@@ -1,6 +1,0 @@
-pattern,reason
-United States,US-only role — matched as words so city names containing the letters don't trip it
-USA,US-only role
-US only,explicit US-only marker
-US-based,explicit US-based marker
-US remote,US-scoped remote
