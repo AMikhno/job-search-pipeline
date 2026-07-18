@@ -1,0 +1,14 @@
+tech,note
+dbt,core analytics engineering tool
+SQL,baseline
+Python,common analytics / AE language
+BigQuery,this project target warehouse
+Snowflake,common cloud warehouse
+Redshift,common cloud warehouse
+Databricks,lakehouse platform
+Looker,BI / semantic layer
+LookML,Looker modeling language
+Tableau,BI tool
+Power BI,BI tool
+Airflow,orchestration - AE-adjacent not a deal-breaker
+Fivetran,managed ELT
