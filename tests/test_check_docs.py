@@ -76,8 +76,8 @@ def test_an_existing_path_is_not_reported() -> None:
 
 
 def test_paths_resolve_relative_to_the_referring_file() -> None:
-    """tools/probes/README.md says `careers-tail/probe_bamboohr.py`, which is
-    correct from where it sits and nonsense from the repo root."""
+    """A README naming a sibling file is correct from where it sits and nonsense
+    from the repo root, so resolution has to try the referring file's directory."""
     source = check_docs.ROOT / "tools" / "probes" / "README.md"
     resolved = check_docs._resolve("careers-tail/probe_bamboohr.py", source=source)
     assert resolved is not None and resolved.exists()

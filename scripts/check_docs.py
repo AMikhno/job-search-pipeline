@@ -117,6 +117,8 @@ def _looks_like_path(token: str) -> bool:
         return False
     if _NOT_A_PATH.search(token):
         return False
+    if re.search(r":\d+$", token):
+        return False  # a line-anchored ref; _check_line_refs verifies those
     if "/" in token and token.split("/")[0] in TOP_LEVEL_DIRS:
         return True
     return Path(token).suffix in KNOWN_SUFFIXES and "/" in token
@@ -126,9 +128,9 @@ def _resolve(ref: str, *, source: Path) -> Path | None:
     """Resolve a reference to a real path, or None if it is not checkable.
 
     Docs address files three ways and all three are legitimate: from the repo
-    root, from the referring file's own directory (`careers-tail/probe_bamboohr.py`
-    inside tools/probes/README.md), and from the dbt project root
-    (`macros/cross_db.sql`, because that is how dbt itself names them).
+    root; from the referring file's own directory (a README naming its siblings
+    without repeating the path to itself); and from the dbt project root, e.g.
+    macros/cross_db.sql, because that is how dbt itself names them.
     """
     clean = ref.split("#")[0].rstrip(".,;:)")
     if not clean:
